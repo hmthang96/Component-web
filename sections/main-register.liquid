@@ -1,6 +1,7 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'jquery.validate.min.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'js-component-validate.js' | asset_url }}" defer="defer"></script>
+{{ 'js-component-validate.css' | asset_url | stylesheet_tag }}
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;

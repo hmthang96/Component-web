@@ -2,6 +2,12 @@
 //Phase 2 : build optional 
 //Phase 3 : using Fuzzy searching to match name filed code and name filed of any theme.
 console.log('init component')
+
+// config variable
+var colorError = "red";
+var minLengthPass = 5;
+var hoverFieldColor = "pink";
+// source code
 class ValidateForm extends HTMLElement {
     connectedCallback(){
         this.render();
@@ -31,6 +37,7 @@ class ValidateForm extends HTMLElement {
         return a;
     }
     customValidate(getIdForm){
+        var $this = $(this);
         $(getIdForm).validate({
             rules: {
                 namne : "required",
@@ -44,7 +51,7 @@ class ValidateForm extends HTMLElement {
                 },
                 "customer[password]" : {
                     required : true,
-                    minlength: 5
+                    minlength: minLengthPass
                 },
                 "customer[first_name]" : {
                     required : true
@@ -95,8 +102,24 @@ class ValidateForm extends HTMLElement {
             errorPlacement : function(error, element) {
                 // error.appendTo(element.parent());
                 element.parent().after(error);
-              }
+                $(error).css({color : colorError});
+            },
+            highlight: function (element , errorClass) {
+                $(element).css({ color : colorError});
+                $(element).next().css({ color : colorError});
+                
+                $(element).parent('.field').addClass("error");
+            },
+            unhighlight : function ( element , errorClass){
+                $(element).css({color : ""});
+                $(element).next().css({ color : ""});
+                $(element).parent('.field').removeClass("error");
+            }
         })
     }
 }
 customElements.define('component-validate-form', ValidateForm);
+
+// css style
+document.body.style.setProperty('--error-color',colorError);
+document.body.style.setProperty('--hover-field-color', hoverFieldColor);
