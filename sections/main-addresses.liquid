@@ -1,7 +1,8 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'customer.js' | asset_url }}" defer></script>
-
+<script src="{{ 'jquery.validate.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'js-component-validate.js' | asset_url }}" defer="defer"></script>
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -38,6 +39,7 @@
       </button>
       <div id="AddAddress">
         <h2 id="AddressNewHeading">{{ 'customer.addresses.add_new' | t }}</h2>
+        <component-validate-form>
         {%- form 'customer_address', customer.new_address, aria-labelledBy: 'AddressNewHeading' -%}
           <div class="field">
             <input type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" placeholder="{{ 'customer.addresses.first_name' | t }}">
@@ -111,6 +113,7 @@
             <button type="reset">{{ 'customer.addresses.cancel' | t }}</button>
           </div>
         {%- endform -%}
+      </component-validate-form>
       </div>
     </div>
 
@@ -141,6 +144,7 @@
           </button>
           <div id="EditAddress_{{ address.id }}">
             <h2>{{ 'customer.addresses.edit_address' | t }}</h2>
+            <component-validate-form>
             {%- form 'customer_address', address -%}
               <div class="field">
                 <input type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" placeholder="{{ 'customer.addresses.first_name' | t }}">
@@ -222,6 +226,7 @@
                 <button type="reset">{{ 'customer.addresses.cancel' | t }}</button>
               </div>
             {%- endform -%}
+          </component-validate-form>
           </div>
         </li>
       {%- endfor -%}
