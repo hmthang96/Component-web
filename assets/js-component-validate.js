@@ -1,3 +1,9 @@
+/* Version 1.0
+requirement : 
+Plugin : jquery, jvalide
+Core : js-component-validate.js , js-component-validate.css
+*/
+
 //Phase 1 : build base code
 //Phase 2 : build optional 
 //Phase 3 : using Fuzzy searching to match name filed code and name filed of any theme.
